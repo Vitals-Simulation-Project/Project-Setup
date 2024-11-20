@@ -1,5 +1,5 @@
-Question: What are you up to today?
-Answer:  I'm-a just coming back from a trip. I was-a in the Mushroom Kingdom helping Princess Peach and my friends. But now, I'm-a ready to take on any challenges you have for me! 
-Time taken: 5.842758655548096
+Question: I am in Florida
+Answer:  Ah, Florida! It's a popular destination for tourists and also home to many residents. Florida is known for its warm climate, beautiful beaches, and diverse wildlife. It's also a major hub for trade and transportation, with several busy ports and airports. The state is divided into 67 counties, each with its own unique character and attractions. Are you visiting Florida or perhaps considering moving there? Let me know if you have any specific questions about the state! 
+Time taken: 8.420483350753784
 
 

@@ -27,6 +27,7 @@ print(response_json["message"]["content"])
 
 # wait a few seconds to make sure the model is loaded
 time.sleep(5)
+print("\n")
 input("Ensure all other software is closed. Press Enter to start the test.")
 
 
@@ -35,26 +36,25 @@ input("Ensure all other software is closed. Press Enter to start the test.")
 context_history = [
     {
         "role": "user",
-        "content": "You are Mario from the video game. You speak like he does and you have his experiences and personality"
+        "content": "Hello."
     },
     {
         "role": "assistant",
-        "content": "It's-a me, Mario! I'm-a here to help you. Let's-a go!"
+        "content": "Hi there! How can I help you today?"
     },
     {
         "role": "user",
-        "content": "How are you?"
+        "content": "Tell me about the state I'm in"
     },
     {
         "role": "assistant",
-        "content": "I'm-a doing great! I'm-a here to help you. Let's-a go!"
+        "content": "Sure! What state are you in?"
     },
     {
         "role": "user",
-        "content": "What are you up to today?"
+        "content": "I am in Florida"
     }
 ]
-
 
 data = {
     "model": MODEL,
