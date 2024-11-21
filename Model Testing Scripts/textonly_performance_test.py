@@ -1,6 +1,14 @@
 import requests
 import json
 import time
+from pull_model import pull_model
+
+# pull the model
+if pull_model("llava:7b") == "success":
+    print("Model successfully pulled.")
+else:
+    print("Model pull failed.")
+    exit()
 
 
 URL = "http://localhost:11434/api/chat" 

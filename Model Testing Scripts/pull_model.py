@@ -8,7 +8,8 @@ URL = "http://localhost:11434/api/pull"
 # returns attribute "status" as "success" if successful
 def pull_model(model):
     data = {
-        "model": model
+        "model": model,
+        "stream": False
     }
     response = requests.post(URL, json=data)
     response_json = json.loads(response.text)
