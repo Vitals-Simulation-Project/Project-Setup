@@ -7,15 +7,17 @@ import statistics
 
 # This script tests the performance of a LLM model from Ollama on text-based questions.
 # The script sends a list of text-based questions to the model and records the time taken for each question.
-# The script writes the questions, responses, and time taken to a file called textonly_performance_results.txt.
+# The script writes the questions, responses, and relevant statistics to a file called textonly_performance_results.txt.
 
 # INSTRUCTIONS
 # 1. Go to https://ollama.com/download and install Ollama
 # 2. Open a regular powershell terminal and run "ollama serve"
 #    a. If you get an error, Ollama is already running and you're good to go
 # 3. Close all other applications to ensure the test is accurate
-# 4. Run this script
-# 5. The results will be written to textonly_performance_results.txt in the test_results directory
+# 4. Make sure to pip import any missing libraries
+# 5. If you haven't downloaded the model yet, the script will do so for you, but it may take a while
+# 6. Run this script
+# 7. The results will be written to textonly_performance_results.txt in the test_results directory
 
 
 NUM_TRIALS = 10    # number of questions in list to test
