@@ -2,20 +2,43 @@ import requests
 import json
 import time
 from pull_model import pull_model
+import os
+import statistics
+
+# This script tests the performance of a LLM model from Ollama on text-based questions.
+# The script sends a list of text-based questions to the model and records the time taken for each question.
+# The script writes the questions, responses, and time taken to a file called textonly_performance_results.txt.
+
+# INSTRUCTIONS
+# 1. Go to https://ollama.com/download and install Ollama
+# 2. Open a regular powershell terminal and run "ollama serve"
+#    a. If you get an error, Ollama is already running and you're good to go
+# 3. Close all other applications to ensure the test is accurate
+# 4. Run this script
+# 5. The results will be written to textonly_performance_results.txt in the test_results directory
+
+
+NUM_TRIALS = 10    # number of questions in list to test
+MODEL = "llava:7b" # model from Ollama
+URL = "http://localhost:11434/api/chat" 
+
+dir_path = os.path.dirname(__file__)
+relative_path = "test_results/textonly_performance_results.txt"
+file_path = os.path.join(dir_path, relative_path)
+
+
 
 # pull the model
-if pull_model("llava:7b") == "success":
+if pull_model(MODEL) == "success":
     print("Model successfully pulled.")
 else:
     print("Model pull failed.")
     exit()
 
 
-URL = "http://localhost:11434/api/chat" 
 
-NUM_TRIALS = 10 # number of questions in list to test
-MODEL = "llava:7b"
 
+# list of text-only questions to test, num_trials should be less than or equal to the number of questions in the list 
 TEXT_ONLY_QUESTIONS = [
     "What are the main differences between machine learning and deep learning?",
     "Can you explain the concept of entropy in physics and information theory?",
@@ -89,12 +112,23 @@ for i in range(NUM_TRIALS):
     print("Time taken: ", time_taken_for_each_question[i])
     print("\n\n")
 
+
 print("Average time taken per text question: ", sum(time_taken_for_each_question) / NUM_TRIALS)
 
+
 # write all the data to a file
-with open("textonly_performance_results.txt", "w") as f:
+with open(file_path, "w") as f:
+    f.write("Model: " + MODEL + "\n")
+    f.write("Number of questions tested: " + str(NUM_TRIALS) + "\n\n\n")
+
     for i in range(NUM_TRIALS):
         f.write("Question: " + TEXT_ONLY_QUESTIONS[i] + "\n")
         f.write("Answer: " + replies[i] + "\n")
         f.write("Time taken: " + str(time_taken_for_each_question[i]) + "\n\n\n")
+
     f.write("Average time taken per text question: " + str(sum(time_taken_for_each_question) / NUM_TRIALS) + "\n")
+    f.write("Minimum time taken: " + str(min(time_taken_for_each_question)) + "\n")
+    f.write("Maximum time taken: " + str(max(time_taken_for_each_question)) + "\n")
+    f.write("Standard deviation: " + str(statistics.stdev(time_taken_for_each_question)) + "\n")
+    f.close()
+    
